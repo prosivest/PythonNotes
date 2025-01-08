@@ -25,4 +25,6 @@ list.pop(3)
 print(list)
 
 # tuple
-#另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。
+# 另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。
+# tuple没有append()，insert()这样的方法。其他获取元素的方法和list是一样的，你可以正常地使用classmates[0]，classmates[-1]，但不能赋值成另外的元素。
+# tuple的陷阱：当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来。
