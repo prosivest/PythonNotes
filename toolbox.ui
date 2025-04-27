@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -48,6 +48,57 @@
      <attribute name="title">
       <string>首页</string>
      </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>50</y>
+        <width>341</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>我的个人工具箱</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="listWidget">
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <item>
+          <property name="text">
+           <string>天数计算</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>测试页</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>其他</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -90,7 +141,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>16</hour>
+           <hour>8</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2024</year>
@@ -285,8 +336,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>itemClicked(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>gotopages()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>809</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>caldays()</slot>
+  <slot>gotopages()</slot>
  </slots>
 </ui>

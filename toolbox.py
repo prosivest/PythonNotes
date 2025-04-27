@@ -18,7 +18,9 @@ class myToolBox(QMainWindow, Ui_MainWindow):
         week = days//7
         day = days%7
         self.label_5.setText('%d周%d天'%(week,day))
-
+    def gotopages(self):
+        pages = self.listWidget.currentRow() +1
+        self.tabWidget.setCurrentIndex(pages)
         
     # end def
 if __name__ == '__main__':
