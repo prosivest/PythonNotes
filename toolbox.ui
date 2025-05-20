@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -87,7 +87,7 @@
          </item>
          <item>
           <property name="text">
-           <string>测试页</string>
+           <string>数据库</string>
           </property>
          </item>
          <item>
@@ -141,7 +141,7 @@
          </property>
          <property name="dateTime">
           <datetime>
-           <hour>0</hour>
+           <hour>8</hour>
            <minute>0</minute>
            <second>0</second>
            <year>2024</year>
@@ -277,8 +277,83 @@
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>页</string>
+      <string>数据库</string>
      </attribute>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>140</y>
+        <width>791</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>0</y>
+        <width>391</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>in</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>out</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="num_db"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="text_db"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>0</y>
+        <width>121</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QPushButton" name="add_btn">
+         <property name="text">
+          <string>添加</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="del_btn">
+         <property name="text">
+          <string>删除</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="query_btn">
+         <property name="text">
+          <string>查询</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -352,9 +427,60 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>add_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>addDB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>64</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>673</x>
+     <y>-13</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>del_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delDB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>551</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>528</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>query_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>queryDB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>621</x>
+     <y>151</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>475</x>
+     <y>-9</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>caldays()</slot>
   <slot>gotopages()</slot>
+  <slot>addDB()</slot>
+  <slot>delDB()</slot>
+  <slot>queryDB()</slot>
  </slots>
 </ui>
