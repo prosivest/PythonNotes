@@ -98,8 +98,7 @@ class myToolBox(QMainWindow, Ui_MainWindow):
             QMessageBox.information(self, "成功", "数据已插入数据库")
             self.queryDB()
         else:
-            print("数据库连接失败")
-
+            print("数据库连接失败OR输入为空")
 
     def delDB(self): 
         """
@@ -109,30 +108,36 @@ class myToolBox(QMainWindow, Ui_MainWindow):
         if selected_row < 0:
             QMessageBox.warning(self, "警告", "请先选择要删除的行")
             return
-        
+
         # Get the ID of the selected item
         item_id = self.tableWidget.item(selected_row, 0)
         if not item_id or not item_id.text():
             QMessageBox.warning(self, "警告", "无法获取选中行的ID")
             return
-        
-        id_to_delete = int(item_id.text())
-        
-        # Connect to the database
-        conn = self.init_db()
-        if conn:
-            cursor = conn.cursor()
-            # Delete the item from the database
-            cursor.execute("DELETE FROM tests WHERE id = ?", (id_to_delete,))
-            conn.commit()
-            conn.close()
-            
-            # Remove the row from the table widget
-            self.tableWidget.removeRow(selected_row)
-            QMessageBox.information(self, "成功", "数据已从数据库删除")
-        else:
-            print("数据库连接失败")
 
+        id_to_delete = int(item_id.text())
+        reply = QMessageBox.question(
+            self,
+            "确认删除",
+            "确定要删除选中的行吗？",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if reply == QMessageBox.StandardButton.Yes:
+            # Connect to the database
+            conn = self.init_db()
+            if conn:
+                cursor = conn.cursor()
+                # Delete the item from the database
+                cursor.execute("DELETE FROM tests WHERE id = ?", (id_to_delete,))
+                conn.commit()
+                conn.close()
+
+                # Remove the row from the table widget
+                self.tableWidget.removeRow(selected_row)
+                QMessageBox.information(self, "成功", "数据已从数据库删除")
+            else:
+                print("数据库连接失败")
 
     def queryDB(self):
         """Queries all items from the database and displays them in the table widget."""
@@ -142,23 +147,21 @@ class myToolBox(QMainWindow, Ui_MainWindow):
                 cursor = conn.cursor()
                 cursor.execute("SELECT id, type, amount, note FROM tests")
                 rows = cursor.fetchall()
-                
                 self.tableWidget.setRowCount(0)
                 self.tableWidget.setColumnCount(4)  # 明确设置列数
                 self.tableWidget.setHorizontalHeaderLabels(["ID", "类型", "数量", "备注"])
-                
+
                 for row_number, row_data in enumerate(rows):
                     self.tableWidget.insertRow(row_number)
                     for column_number, data in enumerate(row_data):
                         item = QTableWidgetItem(str(data if data is not None else ""))
                         self.tableWidget.setItem(row_number, column_number, item)
-                
+
                 conn.close()
             else:
                 print("数据库连接失败")
         except Exception as e:
             print(f"查询数据库时出错: {e}")
-
 
 
 if __name__ == "__main__":
