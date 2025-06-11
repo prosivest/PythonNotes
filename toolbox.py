@@ -1,8 +1,8 @@
 import sys
 import sqlite3
 from Ui_toolbox import Ui_MainWindow
-from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox,QTableWidgetItem
-from PyQt6.QtCore import QDate, QDateTime
+from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QTableWidgetItem, QLabel
+from PyQt6.QtCore import QDate, QDateTime, QTimer
 from qt_material import apply_stylesheet
 
 
@@ -12,6 +12,18 @@ class myToolBox(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         # self.init_db()
         self.queryDB()
+        
+        # 创建状态栏时间显示
+        self.time_label = QLabel(self)
+        self.statusbar.addPermanentWidget(self.time_label)
+        
+        # 创建定时器，每秒更新一次时间
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_time)
+        self.timer.start(1000)  # 1000毫秒 = 1秒
+        
+        # 初始化时间显示
+        self.update_time()
 
     def caldays(self):
         now = QDate.currentDate()
@@ -162,6 +174,11 @@ class myToolBox(QMainWindow, Ui_MainWindow):
                 print("数据库连接失败")
         except Exception as e:
             print(f"查询数据库时出错: {e}")
+
+    def update_time(self):
+        """Updates the time display in the status bar."""
+        current_time = QDateTime.currentDateTime().toString("hh:mm:ss")
+        self.time_label.setText(current_time)
 
 
 if __name__ == "__main__":
