@@ -39,7 +39,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -88,6 +88,11 @@
          <item>
           <property name="text">
            <string>数据库</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>到期管理</string>
           </property>
          </item>
          <item>
@@ -355,6 +360,123 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>到期管理</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>771</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>10</y>
+        <width>371</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>可用时长（天）</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>购买/更换时间</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>物品名称</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_name"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDateEdit" name="dateEdit_2">
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+         <property name="date">
+          <date>
+           <year>2025</year>
+           <month>1</month>
+           <day>1</day>
+          </date>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_days"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>10</y>
+        <width>131</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="pushButton_add">
+         <property name="text">
+          <string>添加</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_modify">
+         <property name="text">
+          <string>修改</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_delete">
+         <property name="text">
+          <string>删除</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_query">
+         <property name="text">
+          <string>查询</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -418,8 +540,8 @@
    <slot>gotopages()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>271</x>
-     <y>152</y>
+     <x>273</x>
+     <y>124</y>
     </hint>
     <hint type="destinationlabel">
      <x>809</x>
@@ -450,8 +572,8 @@
    <slot>delDB()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>551</x>
-     <y>110</y>
+     <x>553</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>528</x>
@@ -466,12 +588,76 @@
    <slot>queryDB()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>621</x>
-     <y>151</y>
+     <x>623</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>475</x>
      <y>-9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_add</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>add_item()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>574</x>
+     <y>-15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_query</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>query_item_fromcsv()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>579</x>
+     <y>168</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>629</x>
+     <y>-4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_delete</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delete_item()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>529</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>476</x>
+     <y>-18</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_modify</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>modify_item()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>513</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>504</x>
+     <y>-3</y>
     </hint>
    </hints>
   </connection>
@@ -482,5 +668,9 @@
   <slot>addDB()</slot>
   <slot>delDB()</slot>
   <slot>queryDB()</slot>
+  <slot>add_item()</slot>
+  <slot>query_item_fromcsv()</slot>
+  <slot>delete_item()</slot>
+  <slot>modify_item()</slot>
  </slots>
 </ui>

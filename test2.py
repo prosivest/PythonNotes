@@ -1,3 +1,4 @@
+'''
 from PyQt6.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget, QPushButton
 from PyQt6.QtCore import QThread, pyqtSignal
 import sys
@@ -71,3 +72,24 @@ if __name__ == '__main__':
     win = ClockWindow()
     win.show()
     sys.exit(app.exec())
+
+'''
+
+import logging
+
+# 使用 basicConfig 进行快速配置
+# level: 设置记录的最低级别
+# format: 设置输出格式
+# filename: 如果提供，日志将写入文件而不是控制台
+logging.basicConfig(
+    level=logging.DEBUG,  # 记录所有级别的日志
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    # filename='app.log', # 如果取消这行注释，日志会写入文件
+    # filemode='w'      # 'w' 表示覆盖写入, 'a' 表示追加写入
+)
+
+logging.debug("这是一个 debug 信息，用于诊断。")
+logging.info("程序正常启动，一切就绪。")
+logging.warning("配置文件未找到，使用默认设置。")
+logging.error("无法连接到数据库。")
+logging.critical("严重错误：磁盘空间不足，程序即将关闭。")

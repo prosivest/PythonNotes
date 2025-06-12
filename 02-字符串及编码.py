@@ -47,3 +47,23 @@ s2 = 85
 r = (s2-s1)/s1*100
 print('小明的成绩提升了%.1f%%' % r)
 print('小明的成绩提升了{0:.2f}%'.format(r))
+print(f"小明的成绩提升了{r:.2f}%")
+
+
+# f-string 的用法
+name = 'Alice'
+age = 30
+
+# 嵌入变量
+print(f"用户 {name} 今年 {age} 岁。")
+print(f"用户 {name=} 今年 {age=} 岁。")
+
+# 嵌入表达式（计算）
+print(f"十年后，她将是 {age + 10} 岁。")
+
+# 嵌入函数调用
+print(f"她的名字大写是：{name.upper()}")
+
+# 格式化数字（例如，保留两位小数）
+price = 49.99
+print(f"价格是：${price:.2f}") 
